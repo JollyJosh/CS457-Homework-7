@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <stdlib.h>
 
 #define BUFFER_SIZE 1024
 
@@ -25,6 +26,21 @@ typedef struct dependencies {
     char *right;
     struct dependencies *next;
 } Dependencies;
+
+Keys *newKey(char *n, Keys* key)    {
+    Keys *newKey = malloc(sizeof(Keys));
+    newKey->name = n;
+    newKey->next = key;
+    return newKey;
+}
+
+Dependencies *newDependency(char *l,char *r, Dependencies *n)   {
+    Dependencies *newD = malloc(sizeof(Dependencies));
+    newD->left = l;
+    newD->right = r;
+    newD->next = n;
+    return newD;
+}
 
 char *getKeyName(Keys *k)   {
     return k->name;
